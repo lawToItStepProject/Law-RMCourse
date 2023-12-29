@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using LawСRM.Data;
+using LawСRM.Data.Entity;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,9 +18,19 @@ namespace LawСRM
     /// </summary>
     public partial class MainWindow : Window
     {
+        //DataContext db = new DataContext();
         public MainWindow()
         {
             InitializeComponent();
+           
+               // Admin admin = new Admin() { Login = "admin", Password = "admin" };
+               // db.Admins.Add(admin);
+               // db.SaveChanges();
+               // AdminProfile adminProfile = new AdminProfile() { Email = "admin@gmail.com", AdminId = admin.Id };
+               // db.AdminProfiles.Add(adminProfile);
+               //db.SaveChanges();
+            
         }
+        
     }
 }

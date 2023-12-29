@@ -7,6 +7,31 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid Background="#bff5e8">
+            <Border MinWidth="400" MaxWidth="550" Margin="15" Background="White" VerticalAlignment="Center" Padding="30" CornerRadius="20">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock Text="Ласкаво просимо!" HorizontalAlignment="Center"  FontSize="30" FontWeight="Bold" Margin="0,0,0,20"></TextBlock>
+                    <TextBlock Text="Оберіть тип користувача:" FontSize="15" Margin="0,0,0,5" HorizontalAlignment="Center"/>
+                    <ComboBox Name="ComboBoxTypeOfUser" SelectedIndex="0" Width="200" Margin="10">
+                        <ComboBoxItem x:Name="AdminComboItem"  Content="Адміністратор"/>
+                    </ComboBox>
+                    <StackPanel HorizontalAlignment="Center" MinWidth="200">
+                        <TextBlock>Логін:</TextBlock>
+                        <TextBox Name="LoginTextBox"></TextBox>
+                        <TextBlock>Пароль:</TextBlock>
+                        <TextBox Name="PasswordTextBox"></TextBox>
+                        <Label Content="Відновити пароль?">
 
+                        </Label>
+                        <Button Background="#b0f7e7" Margin="5"  MinHeight="20"
+                        FontSize="14" FontWeight="Bold"  
+                         >Вхід</Button>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </Window>
