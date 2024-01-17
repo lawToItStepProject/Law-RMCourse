@@ -15,7 +15,7 @@ namespace LawСRM.Commands
         //конструктор принимает два делегата
         public MainCommand(Action<object> Execute, Func<object, bool> CanExecute=null) 
         { 
-            _Execute = Execute?? throw new ArgumentException(nameof(Execute);
+            _Execute = Execute?? throw new ArgumentException(nameof(Execute));
             _CanExecute = CanExecute;
         }
         public override bool CanExecute(object parameter) => _CanExecute?.Invoke(parameter)??true;
