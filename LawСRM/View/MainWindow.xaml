@@ -4,8 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LawСRM"
+        xmlns:vm="clr-namespace:LawСRM.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="LawCRM" Height="450" Width="800">
+    <Window.DataContext>
+        vm:MainWindowViewModel
+    </Window.DataContext>
+
     <Grid>
         <Grid Background="#bff5e8">
             <Border MinWidth="400" MaxWidth="550" Margin="15" Background="White" VerticalAlignment="Center" Padding="30" CornerRadius="20">
@@ -13,7 +18,7 @@
                     <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
                 </Border.Effect>
                 <StackPanel>
-                    <TextBlock Text="Ласкаво просимо!" HorizontalAlignment="Center"  FontSize="30" FontWeight="Bold" Margin="0,0,0,20"></TextBlock>
+                    <TextBlock Text="Ласкаво просимо" HorizontalAlignment="Center"  FontSize="30" FontWeight="Bold" Margin="0,0,0,20"></TextBlock>
                     <TextBlock Text="Оберіть тип користувача:" FontSize="15" Margin="0,0,0,5" HorizontalAlignment="Center"/>
                     <ComboBox Name="ComboBoxTypeOfUser" SelectedIndex="0" Width="200" Margin="10">
                         <ComboBoxItem x:Name="AdminComboItem"  Content="Адміністратор"/>
