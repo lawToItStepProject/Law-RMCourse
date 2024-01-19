@@ -5,9 +5,9 @@
              xmlns:vm="clr-namespace:LawСRM.ViewModels"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
-        <ResourceDictionary>
+        
             <vm:ViewModelLocator x:Key="Locator"/>
-        </ResourceDictionary>
+        
         
         <Style TargetType="Button">
             <Setter Property="Template">

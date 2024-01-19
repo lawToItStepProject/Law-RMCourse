@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LawСRM.ViewModels
+namespace LawСRM.Services
 {
-    internal class ViewModelLocator
+    internal static class ServiceRegistrator
     {
-        public MainWindowViewModel MainWindowViewModel=>App.Services.GetRequiredService<MainWindowViewModel>();
+        public static IServiceCollection AddServices(this IServiceCollection services) => services
+           ;
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using LawСRM.Services;
+using LawСRM.ViewModels;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.ComponentModel.DataAnnotations;
 using System.Windows;
@@ -18,10 +20,10 @@ namespace LawСRM
         //Создаем метод для доступа к сервисам через хост. Таким образом первое обращение к этому свойству приведет к созданию хоста
         public static IServiceProvider Services => _Host.Services;
         //Cоздаем метод, в котором будем конфиругировать сервисы приложения
-        internal static void ConfigureServices(HostBuilderContext context, IServiceCollection services)
-        {
-            throw new NotImplementedException();
-        }
+        internal static void ConfigureServices(HostBuilderContext context, IServiceCollection services) => services
+            .AddServices()
+            .AddViewModels()
+            ;
 
         protected override async void OnStartup(StartupEventArgs e)
         {
