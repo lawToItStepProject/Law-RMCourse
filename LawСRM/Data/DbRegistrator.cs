@@ -17,6 +17,7 @@ namespace LawСRM.Data
                 var type = configuration["Type"];
                 opt.UseSqlServer(configuration.GetConnectionString(type));
             })
+            .AddTransient<InitializerDb>()
             ;
     }
 }

@@ -15,6 +15,7 @@ namespace LawСRM.Data.Entity
         public long? PhoneNumber { get; set; }
         public string Email { get; set; }
         public int LegalOrganizationFormId { get; set; }
+
         [ForeignKey(nameof(LegalOrganizationFormId))]
         public virtual LegalOrganizationForms LegalOrganizationForm { get; set; } = null!;
         public int ClientId { get; set; }

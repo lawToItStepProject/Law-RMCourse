@@ -30,6 +30,12 @@ namespace LawСRM
         protected override async void OnStartup(StartupEventArgs e)
         {
             var host = Host;
+
+            //Создаем область для сервисов, чтобы контекст БД был создан исключительно для этих целей
+            //обеспечиваем, чтобы сначала проинициализировалась БД, а затем открылось окно
+            using (var scope = Services.CreateScope())
+                scope.ServiceProvider.GetRequiredService<InitializerDb>().InitializeAsync().Wait();
+
             base.OnStartup(e);
             await host.StartAsync();
         }
