@@ -1,4 +1,5 @@
-﻿using LawСRM.Services;
+﻿using LawСRM.Data;
+using LawСRM.Services;
 using LawСRM.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,6 +24,7 @@ namespace LawСRM
         internal static void ConfigureServices(HostBuilderContext context, IServiceCollection services) => services
             .AddServices()
             .AddViewModels()
+            .AddDatabase(context.Configuration.GetSection("Database"))
             ;
 
         protected override async void OnStartup(StartupEventArgs e)
