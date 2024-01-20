@@ -1,4 +1,4 @@
-﻿using LawСRM.Data.Entity;
+﻿using LawСRM.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -25,6 +25,7 @@ namespace LawСRM.Data
             var timer = Stopwatch.StartNew();
             _Logger.LogInformation("Инициализация базы данных");
             _Logger.LogInformation("Удаление существующей БД");
+            //Чтобы не возникало DeadLock, когда метод ожидает сам себя тут нужно разорвать контекст синхронизации и вызвать .ConfigureAwait(false);
             await _db.Database.EnsureDeletedAsync().ConfigureAwait(false);
             _Logger.LogInformation($"Удаление существующей БД выполнено за {timer.ElapsedMilliseconds} ");
             _Logger.LogInformation("Миграция БД");
@@ -83,8 +84,8 @@ namespace LawСRM.Data
             for (int i=0; i<_ClientCount; i++)
                 _Clients[i] = new Client() 
                 { 
-                    Login=$"client {i+1}",
-                    Password=$"clientPass {i+1}",
+                    Login=$"client{i+1}",
+                    Password=$"clientPass{i+1}",
                 };
             await _db.Clients.AddRangeAsync(_Clients);
             await _db.SaveChangesAsync();
@@ -148,7 +149,7 @@ namespace LawСRM.Data
             {
                 _LegalClients[i] = new LegalClientProfile()
                 {
-                    Name = $"Фирма {i}",
+                    Name = $"Фирма {i+1}",
                     EDRPOU = _LegallCodeStart + 1 + i,
                     PhoneNumber = _PhoneNumber + 2 + i,
                     Email = $"firm{i + 1}@gmail.com",

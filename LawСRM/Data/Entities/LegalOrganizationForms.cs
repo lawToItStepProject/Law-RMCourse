@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LawСRM.Data.Entity
+namespace LawСRM.Data.Entities
 {
-    public class LegalOrganizationForms
+    public class LegalOrganizationForms:Entity
     {
-        public int Id { get; set; }
         public string Name { get; set; } = null!;
         public List<LegalClientProfile> legalClientProfiles { get; set; }=new List<LegalClientProfile>();
     }

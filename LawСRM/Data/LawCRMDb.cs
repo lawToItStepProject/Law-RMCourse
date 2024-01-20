@@ -1,4 +1,4 @@
-﻿using LawСRM.Data.Entity;
+﻿using LawСRM.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LawСRM.Data.Entity
+namespace LawСRM.Data.Entities
 {
-    public class Client
+    public class Client:Entity
     {
-        public int Id { get; set; }
         public string? Login { get; set; } 
         public string? Password { get; set; } 
         public virtual IndividualClientProfile? IndividualProfile { get; set; }

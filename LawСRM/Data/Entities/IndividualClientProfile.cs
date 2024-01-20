@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LawСRM.Data.Entity
+namespace LawСRM.Data.Entities
 {
-    public class IndividualClientProfile
+    public class IndividualClientProfile:Entity
     {
-        public int Id { get; set; }
         public string Name { get; set; } = null!;
         public string? LastName { get; set; }
         public string Surname { get; set; } = null!;
