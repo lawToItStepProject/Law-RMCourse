@@ -11,5 +11,7 @@ namespace LawСRM.Data.Entities
         public string Login { get; set; } = null!;
         public string Password { get; set; } = null!;
         public virtual AdminProfile? AdminProfile { get; set; }
+
+        public override string ToString()=>$"Данные администратора: {AdminProfile}";
     }
 }

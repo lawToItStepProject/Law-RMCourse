@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 
 namespace LawСRM.Data
 {
@@ -93,9 +94,33 @@ namespace LawСRM.Data
             if (AutoSaveChanges)
                 await _db.SaveChangesAsync(cancellation).ConfigureAwait(false);
         }
-
-
-        
     }
 
+    class DbWorkerForAdmin:DbWorker<Admin>
+    {
+        //Переопределяем свойство, чтобы указать Entity Framework, что при загрузке
+        //сущности из БД нужно загружать связанную сущность
+        public override IQueryable<Admin> Items => base.Items.Include(item => item.AdminProfile);
+
+        public DbWorkerForAdmin(LawCRMDb db):base(db) { }
+    }
+
+    class DbWorkerForClient : DbWorker<Client>
+    {
+        public override IQueryable<Client> Items => base.Items
+            .Include(item => item.IndividualProfile)
+            .Include(item=>item.LegalProfile)
+            .ThenInclude(legalItem=>legalItem.LegalOrganizationForm);
+
+        public DbWorkerForClient(LawCRMDb db) : base(db) { }
+    }
+
+    class DbWorkerForLegalClient : DbWorker<LegalClientProfile>
+    {
+        public override IQueryable<LegalClientProfile> Items => base.Items
+            .Include(item => item.LegalOrganizationForm)
+            ;
+
+        public DbWorkerForLegalClient(LawCRMDb db) : base(db) { }
+    }
 }

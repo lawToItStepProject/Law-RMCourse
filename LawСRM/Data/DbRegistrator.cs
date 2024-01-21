@@ -12,12 +12,13 @@ namespace LawСRM.Data
     internal static class DbRegistrator
     {
         public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration) => services
-            .AddDbContext<LawCRMDb>(opt=>
+            .AddDbContext<LawCRMDb>(opt =>
             {
                 var type = configuration["Type"];
                 opt.UseSqlServer(configuration.GetConnectionString(type));
             })
             .AddTransient<InitializerDb>()
+            .AddDbWorkersInDb()
             ;
     }
 }

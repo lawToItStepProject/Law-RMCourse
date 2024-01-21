@@ -1,5 +1,5 @@
 ﻿using LawСRM.Data;
-using LawСRM.Data.Entity;
+using LawСRM.Data.Entities;
 using LawСRM.ViewModels;
 using System.Text;
 using System.Windows;

@@ -1,10 +1,7 @@
 ﻿using LawСRM.Commands;
+using LawСRM.Data.Entities;
+using LawСRM.Interfaces;
 using LawСRM.ViewModels.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -12,6 +9,7 @@ namespace LawСRM.ViewModels
 {
     internal class MainWindowViewModel:ViewModel
     {
+        private readonly IDbWorker<Admin> _admin;
         #region Команда
         public ICommand CloseApplicationCommand { get;}
         private bool CanCloseApplicationCommandExecute(object parameter) => true;
@@ -28,9 +26,11 @@ namespace LawСRM.ViewModels
             }
         }
         #endregion
-        public MainWindowViewModel() 
+        public MainWindowViewModel(IDbWorker<Data.Entities.Admin> admin) 
         {
             CloseApplicationCommand = new MainCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
+            _admin= admin;
+            var admins = admin.Items.Take(1).ToArray();
         }
         
     }

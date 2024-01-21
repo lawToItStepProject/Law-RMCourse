@@ -16,5 +16,7 @@ namespace LawСRM.Data.Entities
         public int AdminId { get; set; }
         [ForeignKey(nameof(AdminId))]
         public virtual Admin? Admin { get; set; }
+
+        public override string ToString() => $"{Name} {Surname} {Email}";
     }
 }
