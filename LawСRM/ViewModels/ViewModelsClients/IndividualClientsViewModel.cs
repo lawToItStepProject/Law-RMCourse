@@ -1,13 +1,13 @@
 ﻿using LawСRM.Data.Entities;
 using LawСRM.Interfaces;
-
+using MathCore.WPF.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MathCore.WPF.ViewModels;
+namespace LawСRM.ViewModels.ViewModelsClients;
 
 internal class IdividualClientsViewModel : ViewModel
 {
@@ -17,5 +17,5 @@ internal class IdividualClientsViewModel : ViewModel
         _IndividualClientProfile = individualClientProfile;
     }
 
-    
+
 }

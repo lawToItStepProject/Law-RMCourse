@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Input;
 //using MathCore.WPF.Commands;
 using MathCore.WPF.ViewModels;
+using LawСRM.ViewModels.ViewModelsClients;
 
 
 namespace LawСRM.ViewModels

@@ -1,0 +1,72 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#bff5e8"/>
+    <Style TargetType="Window">
+        <Setter Property="Background" Value="{StaticResource WindowBackgroundBrush}"/>
+    </Style>
+    <Style TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border" Background="LightBlue" BorderBrush="#1d7334" BorderThickness="1" CornerRadius="5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Border.Effect>
+                            <DropShadowEffect BlurRadius="10" Color="LightGray" ShadowDepth="0"/>
+                        </Border.Effect>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#bff5e8"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="Foreground" Value="Blue"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="LightBlue"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style TargetType="Menu">
+        <Style.Triggers>
+            <Trigger Property="IsMainMenu" Value="True">
+                <Setter Property="Background" Value="{StaticResource WindowBackgroundBrush}"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Foreground" Value="#1e735e"/>
+                <Setter Property="FontStyle" Value="Italic"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style TargetType="StatusBar">
+       <Setter Property="DockPanel.Dock" Value="Bottom"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Height" Value="Auto"/>
+    </Style>
+
+    <Style TargetType="TreeView">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <!-- Стиль для TreeViewItem -->
+                <Style TargetType="TreeViewItem">
+                    <Setter Property="Padding" Value="0"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Border" x:Key="BorderToTreeViewItems">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="CornerRadius" Value="5"/>
+        <!--<Setter Property="Margin" Value="5"/>-->
+    </Style>
+</ResourceDictionary>
