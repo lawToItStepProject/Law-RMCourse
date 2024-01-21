@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LawСRM.ViewModels.Base
 {
-    internal abstract class ViewModel : INotifyPropertyChanged
+    internal abstract class MyBaseViewModel : INotifyPropertyChanged
     {
         //реализация события из интерйейса INotifyPropertyChanged, оповещает об изменении свойства
         public event PropertyChangedEventHandler PropertyChanged;
