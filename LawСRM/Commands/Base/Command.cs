@@ -8,11 +8,11 @@ using System.Windows.Input;
 
 namespace LawСRM.Commands.Base
 {
-    internal abstract class Command: ICommand
+    public abstract class Command: ICommand
     {
         //Событие срабатывает, когда метод CanExecute возвращает другой тип, 
         //т.е. команда переходит из одного состояния в другое
-        public event EventHandler CanExecuteChanged
+        event EventHandler? ICommand.CanExecuteChanged
         {
             //чтобы передать управление событием WPF нужно реализовать его явно
             //Управление событием передается классу CommandManager
@@ -21,10 +21,17 @@ namespace LawСRM.Commands.Base
         }
 
         //Метод, отвечающий за возможность использования команды
-        public abstract bool CanExecute(object parameter);
+        bool ICommand.CanExecute(object? parameter)=>CanExecute(parameter);
 
         //Метод, отвечающий за основную логику команды
-        public abstract void Execute(object parameter);
+        void ICommand.Execute(object? parameter)
+        {
+            if (((ICommand)this).CanExecute(parameter))
+                Execute(parameter);
+        }
+        protected virtual bool CanExecute(object? p) => true;
+
+        protected abstract void Execute(object? p);
 
     }
 }
