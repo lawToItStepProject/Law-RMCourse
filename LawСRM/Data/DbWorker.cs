@@ -14,6 +14,8 @@ namespace LawСRM.Data
         private readonly LawCRMDb _db;
         //свойство набора данных
         private readonly DbSet<T> _Set;
+        //свойство для предоставления возможности выбирать сохранять ли сущность в БД
+        public bool AutoSaveChanges { get; set; } = true;
         public DbWorker(LawCRMDb db)
         {
             _db = db;
@@ -36,35 +38,64 @@ namespace LawСRM.Data
         {
             if (item is null) throw new ArgumentNullException(nameof(item));
             _db.Entry(item).State = EntityState.Added;
-            _db.SaveChangesAsync();
+            //Добавляем возможность вызывать метод сохранения записей в БД вручную
+            //(полезно при необходимости пакетного добавления=повышение быстродействия)
+            if (AutoSaveChanges)
+                _db.SaveChanges();
             return item;
         }
 
-        public Task<T> AddAsync(int item, CancellationToken cancellation = default)
+        public async Task<T> AddAsync(T item, CancellationToken cancellation = default)
         {
-            throw new NotImplementedException();
+            if (item is null) throw new ArgumentNullException(nameof(item));
+            _db.Entry(item).State = EntityState.Added;
+            if (AutoSaveChanges)
+                await _db.SaveChangesAsync(cancellation).ConfigureAwait(false);
+            return item;
         }
-
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteAsync(int id, CancellationToken cancellation = default)
-        {
-            throw new NotImplementedException();
-        }
-
 
         public void Update(T item)
         {
-            throw new NotImplementedException();
+            if (item is null) throw new ArgumentNullException(nameof(item));
+            _db.Entry(item).State = EntityState.Modified;
+            if (AutoSaveChanges)
+                _db.SaveChanges();
         }
 
-        public Task UpdateAsync(T item, CancellationToken cancellation = default)
+        public async Task UpdateAsync(T item, CancellationToken cancellation = default)
         {
-            throw new NotImplementedException();
+            if (item is null) throw new ArgumentNullException(nameof(item));
+            _db.Entry(item).State = EntityState.Modified;
+            if (AutoSaveChanges)
+                await _db.SaveChangesAsync(cancellation).ConfigureAwait(false);
         }
+        public void Delete(int id)
+        {
+            //Можно получить сущность по ее идентификатору и затем удалить,
+            //но если сущность большая, процесс извлечения ее из БД может занять слишком много времени
+            //var item = Get(id);
+            //if (item is null) return;
+            //_db.Entry(item);
+
+            //Лучше взять создать новую сущность и у нее установить id той, которую нужно удалить
+            //В этом случае можно не указывать все остальные поля сущности, а только указать первичный ключ
+            //При этом сущность будет удалена из БД и не придется передавать кучу данных
+            _db.Remove(new T { Id = id });
+            if (AutoSaveChanges)
+                _db.SaveChanges();
+            //но в этом случае можно и не узнать, что сущность была реально удалена (есть нюансы, проверить!)
+
+        }
+
+        public async Task DeleteAsync(int id, CancellationToken cancellation = default)
+        {
+            _db.Remove(new T { Id = id });
+            if (AutoSaveChanges)
+                await _db.SaveChangesAsync(cancellation).ConfigureAwait(false);
+        }
+
+
+        
     }
 
 }
