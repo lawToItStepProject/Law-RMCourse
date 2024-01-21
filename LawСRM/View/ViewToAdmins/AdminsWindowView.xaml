@@ -8,6 +8,7 @@
         xmlns:vm="clr-namespace:LawСRM.ViewModels"
         xmlns:cm="clr-namespace:LawСRM.Commands"
         DataContext="{Binding AdminWindowViewModel, Source={StaticResource Locator}}"
+
         Title="Панель администратора" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -16,15 +17,36 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" HorizontalAlignment="Center" Background="#5bcfb0">
-            <Menu IsMainMenu="True">
-            <MenuItem Header="Профиль"/>
-            <MenuItem Header="О программе"/>
+            <Menu IsMainMenu="True" Margin="10">
+                <MenuItem Header="ПРОФИЛЬ"/>
+                <Separator Width="28" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Height="3">
+                    <Separator.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="93.779"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Separator.RenderTransform>
+                    <Separator.Style>
+                        <Style TargetType="Separator">
+                            <Setter Property="Height" Value="15"/>
+                            <Setter Property="Width" Value="15"/>
+                            <Setter Property="Background" Value="Gray"/>
+                            <Setter Property="Margin" Value="0,5"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </Separator.Style>
+                </Separator>
+                <Separator/>
+                <MenuItem Header="О ПРОГРАММЕ"/>
             </Menu>
         </StackPanel>
-        <Grid Grid.Row="1" Background="#bff5e8">
+        <Grid Background="#bff5e8" Grid.Row="1" Margin="0,7,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <!--<StackPanel Orientation="Vertical">
                 <Menu>
@@ -34,34 +56,18 @@
                     <MenuItem Header="Статистика"/>
                 </Menu>
             </StackPanel>-->
-            <TreeView Grid.Column="0" Background="#bff5e8" Grid.ColumnSpan="2" Margin="0,0,606,0">
-                <TreeView.ItemContainerStyle>
-                    <Style TargetType="TreeViewItem">
-                        <Setter Property="Padding" Value="0"/>
-                        <Setter Property="Margin" Value="0"/>
-                    </Style>
-                </TreeView.ItemContainerStyle>
-                <TreeView.Resources>
-                    <Style TargetType="TreeView">
-                        <Setter Property="Padding" Value="0"/>
-                    </Style>
-                </TreeView.Resources>
-                <Border>
-                    <TreeViewItem Header="Физические лица"/>
-                </Border>
 
-                <Border>
-                    <TreeViewItem Header="Юридические лица"/>
-                </Border>
+            <TreeView Grid.Column="0" Background="#bff5e8">
 
-                <Border>
-                    <TreeViewItem Header="Все клиенты"/>
-                </Border>
-                <Border>
-                    <TreeViewItem Header="Статистика"/>
-                </Border>
-                
+                <TreeViewItem Header="ФИЗИЧЕСКИЕ ЛИЦА"/>
+                <TreeViewItem Header="ЮРИДИЧЕСКИЕ ЛИЦА"/>
+                <TreeViewItem Header="ВСЕ КЛИЕНТЫ"/>
+                <TreeViewItem Header="СТАТИСТИКА"/>
             </TreeView>
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Left" Background="#186e56"/>
+            <Grid Grid.Column="2">
+
+            </Grid>
         </Grid>
 
         <StatusBar Grid.Row="2">
