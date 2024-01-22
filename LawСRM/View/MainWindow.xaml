@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LawСRM"
         xmlns:vm="clr-namespace:LawСRM.ViewModels"
-        xmlns:cm="clr-namespace:LawСRM.Commands"
+
         DataContext="{Binding MainWindowViewModel, Source={StaticResource Locator}}"
         mc:Ignorable="d"
         Title="LawCRM" Height="450" Width="800">

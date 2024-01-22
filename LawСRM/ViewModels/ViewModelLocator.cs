@@ -1,4 +1,5 @@
-﻿using LawСRM.ViewModels.ViewModelsToAdmins;
+﻿using LawСRM.ViewModels.ViewModelsClients;
+using LawСRM.ViewModels.ViewModelsToAdmins;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace LawСRM.ViewModels
     internal class ViewModelLocator
     {
         public MainWindowViewModel MainWindowViewModel=>App.Services.GetRequiredService<MainWindowViewModel>();
-        //public AdminWindowViewModel AdminWindowViewModel=>App.Services.GetRequiredService<AdminWindowViewModel>();
+        public AdminWindowViewModel AdminWindowViewModel => App.Services.GetRequiredService<AdminWindowViewModel>();
+        public IdividualClientsViewModel IndividualClientWindowViewModel => App.Services.GetRequiredService<IdividualClientsViewModel>();
     }
 }

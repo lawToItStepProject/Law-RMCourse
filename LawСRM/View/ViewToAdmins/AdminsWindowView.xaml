@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:LawСRM.View.ViewToAdmins"
         mc:Ignorable="d"
         xmlns:vm="clr-namespace:LawСRM.ViewModels"
-        xmlns:cm="clr-namespace:LawСRM.Commands"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         DataContext="{Binding AdminWindowViewModel, Source={StaticResource Locator}}"
 
         Title="Панель администратора" Height="450" Width="800">
@@ -59,14 +60,20 @@
 
             <TreeView Grid.Column="0" Background="#bff5e8">
 
-                <TreeViewItem Header="ФИЗИЧЕСКИЕ ЛИЦА"/>
+                <TreeViewItem Header="ФИЗИЧЕСКИЕ ЛИЦА">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Loaded">
+                        <behaviors:InvokeCommandAction Command="{Binding ShowIndividualViewClientCommand}"/>
+                    </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </TreeViewItem>
                 <TreeViewItem Header="ЮРИДИЧЕСКИЕ ЛИЦА"/>
-                <TreeViewItem Header="ВСЕ КЛИЕНТЫ"/>
-                <TreeViewItem Header="СТАТИСТИКА"/>
+                <!--<TreeViewItem Header="ВСЕ КЛИЕНТЫ"/>
+                <TreeViewItem Header="СТАТИСТИКА"/>-->
             </TreeView>
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Left" Background="#186e56"/>
             <Grid Grid.Column="2">
-
+                <ContentControl Content="{Binding CurrentViewModel}"/>
             </Grid>
         </Grid>
 

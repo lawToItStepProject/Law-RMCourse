@@ -11,6 +11,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Commands\**" />
+    <Compile Remove="Templates\**" />
+    <EmbeddedResource Remove="Commands\**" />
+    <EmbeddedResource Remove="Templates\**" />
+    <None Remove="Commands\**" />
+    <None Remove="Templates\**" />
+    <Page Remove="Commands\**" />
+    <Page Remove="Templates\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Icon.ico" />
   </ItemGroup>
 
@@ -33,10 +44,6 @@
     <None Update="Resources\Icon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Templates\" />
   </ItemGroup>
 
   <ItemGroup>

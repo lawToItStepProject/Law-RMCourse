@@ -1,11 +1,11 @@
-﻿using LawСRM.Commands;
+﻿//using LawСRM.Commands;
 using LawСRM.Data.Entities;
 using LawСRM.Interfaces;
 //using LawСRM.ViewModels.Base;
 using LawСRM.ViewModels;
 using System.Windows;
 using System.Windows.Input;
-//using MathCore.WPF.Commands;
+using MathCore.WPF.Commands;
 using MathCore.WPF.ViewModels;
 using LawСRM.ViewModels.ViewModelsClients;
 
@@ -39,7 +39,7 @@ namespace LawСRM.ViewModels
         #region Команда ддля загрузки представления физических лиц
         private ICommand _ShowIndividualViewClientCommand;
         public ICommand ShowIndividualViewClientCommand => _ShowIndividualViewClientCommand
-            ??= new MainCommand(OnShowIndividualClientCommandExecuted, CanShowIndividualClientExecute);
+            ??= new LambdaCommand(OnShowIndividualClientCommandExecuted, CanShowIndividualClientExecute);
         private bool CanShowIndividualClientExecute() => true;
         private void OnShowIndividualClientCommandExecuted()
         {
@@ -49,7 +49,7 @@ namespace LawСRM.ViewModels
 
         public MainWindowViewModel(IDbWorker<Data.Entities.Admin> admin)
         {
-            CloseApplicationCommand = new MainCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
+            CloseApplicationCommand = new LambdaCommand(OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
             _admin = admin;
             var admins = admin.Items.Take(1).ToArray();
         }
