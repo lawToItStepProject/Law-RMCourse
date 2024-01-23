@@ -28,7 +28,7 @@ namespace LawСRM.ViewModels.ViewModelsToAdmins
 
         private void OnShowIndividualViewClientCommandExecuted()
         {
-            _CurrentViewModel = new IdividualClientsViewModel(_individualClientProfile);
+            CurrentViewModel = new IdividualClientsViewModel(_individualClientProfile);
             MessageBox.Show("Команда вызвана");
         }
         #endregion
